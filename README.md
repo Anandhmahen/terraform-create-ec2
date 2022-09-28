@@ -1,0 +1,1 @@
+This terraform module creates an EC2 instance and creates a key value pair named example-key and attach it to the created instance. 
