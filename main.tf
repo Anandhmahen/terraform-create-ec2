@@ -7,8 +7,8 @@ resource "aws_instance" "example_ec2" {
     ami = "ami-097a2df4ac947655f"
     instance_type = "t3a.micro"
     availability_zone = "us-east-2a"
-    key_name = aws_key_pair.example.key_name
-    vpc_security_group_ids = [aws_security_group.example-sg.id]
+    key_name = aws_key_pair.example-key-pair.key_name
+    vpc_security_group_ids = [aws_security_group.example-security-group.id]
     associate_public_ip_address = true
     tags = {
       "Name" = "Example EC2"
@@ -17,7 +17,7 @@ resource "aws_instance" "example_ec2" {
       ignore_changes = [ami]
     }
     depends_on = [
-      aws_key_pair.example
+      aws_key_pair.example-key-pair
     ]
  }
 
@@ -27,7 +27,7 @@ resource "tls_private_key" "pk" {
   rsa_bits  = 4096
 }
 
-resource "aws_key_pair" "example" {
+resource "aws_key_pair" "example-key-pair" {
   key_name   = "example-key"
   public_key = tls_private_key.pk.public_key_openssh
 
