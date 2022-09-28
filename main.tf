@@ -4,9 +4,9 @@ provider "aws" {
 
 resource "aws_instance" "example_ec2" {
     #  ubuntu 20.04
-    ami = "ami-097a2df4ac947655f"
+    ami = "ami-024c319d5d14b463e"
     instance_type = "t3a.micro"
-    availability_zone = "us-east-2a"
+    availability_zone = "ap-south-1a"
     key_name = aws_key_pair.example-key-pair.key_name
     vpc_security_group_ids = [aws_security_group.example-security-group.id]
     associate_public_ip_address = true
